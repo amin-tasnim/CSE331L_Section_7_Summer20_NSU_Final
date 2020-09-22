@@ -1,0 +1,39 @@
+ORG 100H
+MOV AX, @Data
+MOV DS,AX
+LEA DX,STR1
+MOV AH,9
+INT 21H
+MOV AH,1
+INT 21H
+MOV BL,AL
+SUB BL, 30H
+TEST BL, 01H
+MOV AH,2
+MOV DL,10d
+INT 21H     
+MOV DL,13d  
+INT 21H 
+MOV DL, BL 
+ADD DL, 30H
+INT 21H
+JNZ ODD
+EVEN:
+LEA DX,STREVEN
+MOV AH,9
+INT 21H    
+JMP ENDED
+
+
+
+ODD:        
+LEA DX,STRODD
+MOV AH,9
+INT 21H    
+ENDED:
+RET
+STR1 DB "Enter the int: $"  
+STRODD DB " is an odd number $"
+STREVEN DB " is an even number $"
+
+
