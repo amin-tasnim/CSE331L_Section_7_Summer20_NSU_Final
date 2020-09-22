@@ -1,0 +1,33 @@
+
+ORG 100H
+MOV AX, @DATA
+MOV DS, AX
+LEA DX, STR1
+MOV AH, 9
+INT 21H     
+MOV AH, 1
+INT 21H 
+SUB AL, 30H
+MOV BL, AL
+LEA DX, STR2
+MOV AH, 9
+INT 21H 
+MOV AH, 1
+INT 21H  
+SUB AL, 30H
+MUL BL
+    MOV BL, AL 
+    ADD BL, 30H 
+    LEA DX, STRM
+    MOV AH, 9
+    INT 21H
+    MOV AH, 2
+    MOV DL, BL
+    INT 21H
+RET                
+STR1 DB "Enter int 1: $"
+STR2 DB 13D,10D,"Enter int 2: $"
+STRM DB 13D,10D,"MUL: $"
+
+
+
